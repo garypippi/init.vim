@@ -4,7 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " ale
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', {'tag': 'v3.0.0'}
 
 " indentlines
 Plug 'Yggdroot/indentLine'
@@ -100,6 +100,7 @@ function! s:show_documentation()
 endfunction
 
 " ale
+let g:ale_disable_lsp = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
     \'html': [],
