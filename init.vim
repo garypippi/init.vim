@@ -1,7 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
-" coc.vim
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" LSP configurations
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 
 " ale
 Plug 'w0rp/ale'
@@ -77,27 +78,37 @@ Plug 'peterhoeg/vim-qml'
 
 call plug#end()
 
-""" coc.vim
 
-" Format
-vmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
+" LSP
+lua << EOF
+    local on_attach = function (client, bufnr)
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+        )
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>u', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {noremap = true, silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
+        require('completion').on_attach(client)
+    end
+    require('lspconfig').vimls.setup({on_attach = on_attach})
+    require('lspconfig').tsserver.setup({on_attach = on_attach})
+    require('lspconfig').intelephense.setup({on_attach = on_attach})
+    require('lspconfig').vuels.setup({on_attach = on_attach})
+    require('lspconfig').ccls.setup({on_attach = on_attach})
+EOF
 
-" Go-To
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" Auto complete
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 
-" show documentation
-nnoremap <silent> K :call <sid>show_documentation()<cr>
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" Avoid conflict between auto pairs
+let g:completion_confirm_key = ""
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
 
 " ale
 let g:ale_disable_lsp = 1
@@ -134,6 +145,8 @@ let g:PaperColor_Theme_Options = { 'theme': { 'default': { 'transparent_backgrou
 set background=dark
 colorscheme PaperColor
 
+let g:vimsyn_embed='lPr'
+
 set hidden
 set noea
 set noswapfile
@@ -146,6 +159,9 @@ set softtabstop=4
 set number
 highlight LineNr ctermfg=246
 highlight NonText ctermfg=68
+highlight LspDiagnosticsSignError ctermbg=9 ctermfg=15
+highlight LspDiagnosticsSignHint ctermbg=142 ctermfg=15
+
 
 set list
 set listchars=tab:>-
