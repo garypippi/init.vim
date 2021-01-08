@@ -4,7 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " ale
-Plug 'w0rp/ale', {'tag': 'v3.0.0'}
+Plug 'w0rp/ale'
 
 " indentlines
 Plug 'Yggdroot/indentLine'
