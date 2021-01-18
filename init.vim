@@ -13,9 +13,11 @@ Plug 'Yggdroot/indentLine'
 " trailing whitespace
 Plug 'bronson/vim-trailing-whitespace'
 
-" ranger
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
+" Filer
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 
 " markdown
 Plug 'plasticboy/vim-markdown'
@@ -135,10 +137,11 @@ let g:vim_markdown_folding_disabled = 1
 " vue
 au FileType vue syntax sync fromstart
 
-" ranger
-let g:ranger_map_keys = 0
-nnoremap <silent> <leader>r :RangerWorkingDirectory<cr>
-nnoremap <silent> - :RangerCurrentDirectory<cr>
+" Filer
+nnoremap <silent> <leader>r :Fern .<cr>
+nnoremap <silent> - :Fern . -reveal=%<cr>
+let g:fern#renderer = 'nerdfont'
+
 
 " theme
 let g:PaperColor_Theme_Options = { 'theme': { 'default': { 'transparent_background': 1 } } }
