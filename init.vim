@@ -19,6 +19,9 @@ Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 
+" Fuzzy Finder
+Plug 'ctrlpvim/ctrlp.vim'
+
 " markdown
 Plug 'plasticboy/vim-markdown'
 
