@@ -126,6 +126,13 @@ let g:ale_fixers = {
     \'vue': ['eslint']
 \}
 
+" test
+nnoremap <silent> <leader>tf :TestFile<cr>
+nnoremap <silent> <leader>tn :TestNearest<cr>
+nnoremap <silent> <leader>tt :TestSuite<cr>
+nnoremap <silent> <leader>tl :TestLast<cr>
+nnoremap <silent> <leader>tv :TestVisit<cr>
+
 " indentlines
 let g:indentLine_enabled = 0
 
