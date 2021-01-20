@@ -104,6 +104,7 @@ lua << EOF
     require('lspconfig').intelephense.setup({on_attach = on_attach})
     require('lspconfig').vuels.setup({on_attach = on_attach})
     require('lspconfig').ccls.setup({on_attach = on_attach})
+    require('lspconfig').jsonls.setup({on_attach = on_attach})
 EOF
 
 " Auto complete
