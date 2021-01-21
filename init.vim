@@ -25,6 +25,10 @@ Plug 'lambdalisue/fern-git-status.vim'
 " Fuzzy Finder
 Plug 'ctrlpvim/ctrlp.vim'
 
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " markdown
 Plug 'plasticboy/vim-markdown'
 
@@ -138,6 +142,32 @@ nnoremap <silent> <leader>tn :TestNearest<cr>
 nnoremap <silent> <leader>tt :TestSuite<cr>
 nnoremap <silent> <leader>tl :TestLast<cr>
 nnoremap <silent> <leader>tv :TestVisit<cr>
+
+" telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>kc <cmd>Telescope git_commits<cr>
+nnoremap <leader>kv <cmd>Telescope git_commits<cr>
+nnoremap <leader>kb <cmd>Telescope git_branches<cr>
+nnoremap <leader>kn <cmd>Telescope git_status<cr>
+
+lua << EOF
+    local actions = require('telescope.actions')
+    require('telescope').setup({
+        defaults = {
+            mappings = {
+                i = {
+                    ["<c-j>"] = actions.move_selection_next,
+                    ["<c-k>"] = actions.move_selection_previous
+                }
+            }
+        }
+    })
+EOF
+
+
 
 " indentlines
 let g:indentLine_enabled = 0
