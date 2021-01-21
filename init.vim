@@ -77,6 +77,7 @@ Plug 'janko/vim-test'
 
 " theme
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'itchyny/lightline.vim'
 
 " jsx
 Plug 'leafgarland/typescript-vim'
@@ -176,10 +177,16 @@ let g:indentLine_enabled = 0
 let g:php_cs_fixer_config_file = expand('<sfile>:p:h') . '/php-cs.php'
 let g:php_cs_fixer_path = expand('<sfile>:p:h') . '/vendor/bin/php-cs-fixer'
 
-"markdown
+" markdown
 let g:vim_markdown_folding_disabled = 1
 
-set statusline=%{FugitiveStatusline()}
+"
+let g:lightline = {
+\   'active': {'left': [['mode', 'paste'],['gitbranch','readonly','filename','modified']]},
+\   'component_function': {
+\       'gitbranch': 'FugitiveHead'
+\   }
+\}
 
 " vue
 au FileType vue syntax sync fromstart
