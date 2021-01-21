@@ -7,6 +7,9 @@ Plug 'nvim-lua/completion-nvim'
 " ale
 Plug 'w0rp/ale'
 
+" git
+Plug 'tpope/vim-fugitive'
+
 " indentlines
 Plug 'Yggdroot/indentLine'
 
@@ -146,6 +149,7 @@ let g:php_cs_fixer_path = expand('<sfile>:p:h') . '/vendor/bin/php-cs-fixer'
 "markdown
 let g:vim_markdown_folding_disabled = 1
 
+set statusline=%{FugitiveStatusline()}
 
 " vue
 au FileType vue syntax sync fromstart
