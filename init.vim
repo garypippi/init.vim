@@ -108,11 +108,12 @@ lua << EOF
         require('completion').on_attach(client)
     end
     require('lspconfig').vimls.setup({on_attach = on_attach})
+    require('lspconfig').jsonls.setup({on_attach = on_attach})
     require('lspconfig').tsserver.setup({on_attach = on_attach})
     require('lspconfig').intelephense.setup({on_attach = on_attach})
     require('lspconfig').vuels.setup({on_attach = on_attach})
     require('lspconfig').ccls.setup({on_attach = on_attach})
-    require('lspconfig').jsonls.setup({on_attach = on_attach})
+    require('lspconfig').rls.setup({on_attach = on_attach})
 EOF
 
 " Auto complete
