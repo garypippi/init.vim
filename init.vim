@@ -194,7 +194,7 @@ au FileType vue syntax sync fromstart
 
 " Filer
 nnoremap <silent> <leader>r :Fern .<cr>
-nnoremap <silent> - :Fern . -reveal=%<cr>
+nnoremap <silent> - :Fern . -reveal=%:p<cr>
 let g:fern#renderer = 'nerdfont'
 
 
