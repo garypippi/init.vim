@@ -117,15 +117,10 @@ lua << EOF
 EOF
 
 " Auto complete
+let g:completion_confirm_key = '<c-k>'
+let g:completion_trigger_on_delete = 1
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
-
-" Avoid conflict between auto pairs
-let g:completion_confirm_key = ""
-imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
-                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
-" Auto complete on delete
-let g:completion_trigger_on_delete = 1
 
 " ale
 let g:ale_disable_lsp = 1
@@ -151,7 +146,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>kc <cmd>Telescope git_commits<cr>
-nnoremap <leader>kv <cmd>Telescope git_commits<cr>
+nnoremap <leader>kv <cmd>Telescope git_bcommits<cr>
 nnoremap <leader>kb <cmd>Telescope git_branches<cr>
 nnoremap <leader>kn <cmd>Telescope git_status<cr>
 
