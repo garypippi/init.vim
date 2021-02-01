@@ -142,13 +142,11 @@ nnoremap <silent> <leader>tv :TestVisit<cr>
 
 " telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>kc <cmd>Telescope git_commits<cr>
 nnoremap <leader>kv <cmd>Telescope git_bcommits<cr>
 nnoremap <leader>kb <cmd>Telescope git_branches<cr>
-nnoremap <leader>kn <cmd>Telescope git_status<cr>
+nnoremap <leader>ks <cmd>Telescope git_status<cr>
 
 lua << EOF
     local actions = require('telescope.actions')
