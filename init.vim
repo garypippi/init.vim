@@ -2,7 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " LSP configurations
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 
 " ale
 Plug 'w0rp/ale'
@@ -22,9 +22,7 @@ Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 
-" Fuzzy Finder
-Plug 'ctrlpvim/ctrlp.vim'
-
+" telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -91,35 +89,50 @@ Plug 'peterhoeg/vim-qml'
 
 call plug#end()
 
-
 " LSP
-lua << EOF
-    local on_attach = function (client, bufnr)
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
-        )
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>u', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
-        require('completion').on_attach(client)
-    end
-    require('lspconfig').vimls.setup({on_attach = on_attach})
-    require('lspconfig').jsonls.setup({on_attach = on_attach})
-    require('lspconfig').tsserver.setup({on_attach = on_attach})
-    require('lspconfig').intelephense.setup({on_attach = on_attach})
-    require('lspconfig').vuels.setup({on_attach = on_attach})
-    require('lspconfig').ccls.setup({on_attach = on_attach})
-    require('lspconfig').rls.setup({on_attach = on_attach})
-EOF
 
-" Auto complete
-let g:completion_confirm_key = '<c-k>'
-let g:completion_trigger_on_delete = 1
-set completeopt=menuone,noinsert,noselect
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<cr>
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
+nnoremap <silent> <leader>u <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <silent> <leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
+nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+
+lua vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+lua require'lspconfig'.vimls.setup{}
+lua require'lspconfig'.jsonls.setup{}
+lua require'lspconfig'.tsserver.setup{}
+lua require'lspconfig'.intelephense.setup{}
+lua require'lspconfig'.vuels.setup{}
+lua require'lspconfig'.ccls.setup{}
+lua require'lspconfig'.rls.setup{}
+
+" auto complete
+
+inoremap <silent><expr> <c-space> compe#complete()
+inoremap <silent><expr> <c-k> compe#confirm('<cr>')
+inoremap <silent><expr> <c-e> compe#close('<c-e>')
+
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.allow_prefix_unmatch = v:false
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.spell = v:true
+let g:compe.source.tags = v:true
+
+set completeopt=menu,menuone,noinsert,noselect
 set shortmess+=c
 
 " ale
@@ -185,7 +198,7 @@ let g:lightline = {
 " vue
 au FileType vue syntax sync fromstart
 
-" Filer
+" filer
 nnoremap <silent> <leader>r :Fern .<cr>
 nnoremap <silent> - :Fern . -reveal=%:p<cr>
 let g:fern#renderer = 'nerdfont'
