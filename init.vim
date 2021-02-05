@@ -11,6 +11,9 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" db
+Plug 'tpope/vim-dadbod'
+
 " indentlines
 Plug 'Yggdroot/indentLine'
 
