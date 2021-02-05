@@ -9,6 +9,7 @@ Plug 'w0rp/ale'
 
 " git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " indentlines
 Plug 'Yggdroot/indentLine'
@@ -90,7 +91,6 @@ Plug 'peterhoeg/vim-qml'
 call plug#end()
 
 " LSP
-
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<cr>
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
@@ -99,7 +99,7 @@ nnoremap <silent> <leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<
 nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
 nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 
-lua vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+lua vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false, underline = false })
 lua require'lspconfig'.vimls.setup{}
 lua require'lspconfig'.jsonls.setup{}
 lua require'lspconfig'.tsserver.setup{}
@@ -146,6 +146,18 @@ let g:ale_fixers = {
     \'vue': ['eslint']
 \}
 
+" git
+set updatetime=400
+let g:gitgutter_map_keys = 0
+let g:gitgutter_signs = 0
+nnoremap <silent> <leader>hh :GitGutterLineHighlightsToggle<cr>
+nnoremap <silent> <leader>hh :GitGutterLineHighlightsToggle<cr>
+nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
+nnoremap <silent> <leader>hs :GitGutterStageHunk<cr>
+nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
+nnoremap <silent> [h :GitGutterPrevHunk<cr>
+nnoremap <silent> ]h :GitGutterNextHunk<cr>
+
 " test
 nnoremap <silent> <leader>tf :TestFile<cr>
 nnoremap <silent> <leader>tn :TestNearest<cr>
@@ -154,12 +166,12 @@ nnoremap <silent> <leader>tl :TestLast<cr>
 nnoremap <silent> <leader>tv :TestVisit<cr>
 
 " telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>kc <cmd>Telescope git_commits<cr>
-nnoremap <leader>kv <cmd>Telescope git_bcommits<cr>
-nnoremap <leader>kb <cmd>Telescope git_branches<cr>
-nnoremap <leader>ks <cmd>Telescope git_status<cr>
+nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>kc <cmd>Telescope git_commits<cr>
+nnoremap <silent> <leader>kv <cmd>Telescope git_bcommits<cr>
+nnoremap <silent> <leader>kb <cmd>Telescope git_branches<cr>
+nnoremap <silent> <leader>ks <cmd>Telescope git_status<cr>
 
 lua << EOF
     local actions = require('telescope.actions')
@@ -225,7 +237,6 @@ highlight LineNr ctermfg=246
 highlight NonText ctermfg=68
 highlight LspDiagnosticsSignError ctermbg=9 ctermfg=15
 highlight LspDiagnosticsSignHint ctermbg=142 ctermfg=15
-
 
 set list
 set listchars=tab:>-
