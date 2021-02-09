@@ -4,6 +4,10 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 
+" snippets
+Plug 'norcalli/snippets.nvim'
+Plug 'garypippi/sniphpets.nvim'
+
 " ale
 Plug 'w0rp/ale'
 
@@ -134,6 +138,7 @@ let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.spell = v:true
 let g:compe.source.tags = v:true
+let g:compe.source.snippets_nvim = v:true
 
 set completeopt=menu,menuone,noinsert,noselect
 set shortmess+=c
@@ -190,7 +195,24 @@ lua << EOF
     })
 EOF
 
-
+" snippets
+lua << EOF
+    local indent = require('snippets.utils').match_indentation
+    local sniphpets = require('sniphpets')
+    require('snippets').snippets = {
+        php = {
+            ['public property'] = indent(sniphpets.get_property('public')),
+            ['private property'] = indent(sniphpets.get_property('private')),
+            ['protected property'] = indent(sniphpets.get_property('protected')),
+            ['public function'] = indent(sniphpets.get_function('public')),
+            ['public static function'] = indent(sniphpets.get_function('public static')),
+            ['private function'] = indent(sniphpets.get_function('private')),
+            ['private static function'] = indent(sniphpets.get_function('private static')),
+            ['protected function'] = indent(sniphpets.get_function('protected')),
+            ['protected static function'] = indent(sniphpets.get_function('protected static'))
+        }
+    }
+EOF
 
 " indentlines
 let g:indentLine_enabled = 0
