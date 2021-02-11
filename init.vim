@@ -38,9 +38,6 @@ Plug 'nvim-telescope/telescope.nvim'
 " markdown
 Plug 'plasticboy/vim-markdown'
 
-" php
-Plug 'stephpy/vim-php-cs-fixer'
-
 " javascript
 Plug 'pangloss/vim-javascript'
 
@@ -216,10 +213,6 @@ EOF
 
 " indentlines
 let g:indentLine_enabled = 0
-
-" php
-let g:php_cs_fixer_config_file = expand('<sfile>:p:h') . '/php-cs.php'
-let g:php_cs_fixer_path = expand('<sfile>:p:h') . '/vendor/bin/php-cs-fixer'
 
 " markdown
 let g:vim_markdown_folding_disabled = 1
