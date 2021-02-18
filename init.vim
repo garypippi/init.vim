@@ -35,6 +35,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" php
+Plug 'stephpy/vim-php-cs-fixer'
+
 " markdown
 Plug 'plasticboy/vim-markdown'
 
@@ -210,6 +213,10 @@ lua << EOF
         }
     }
 EOF
+
+" php
+nnoremap <silent> <leader>pcd :call PhpCsFixerFixDirectory()<cr>
+nnoremap <silent> <leader>pcf :call PhpCsFixerFixFile()<cr>
 
 " indentlines
 let g:indentLine_enabled = 0
