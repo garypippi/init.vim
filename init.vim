@@ -105,7 +105,7 @@ nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 
 lua vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false, underline = false })
 lua require'lspconfig'.vimls.setup{}
-lua require'lspconfig'.jsonls.setup{}
+lua require'lspconfig'.jsonls.setup{ settings = { json = { schemas = { { fileMatch = {'tsconfig.json'}, url = 'http://json.schemastore.org/tsconfig' } } } } }
 lua require'lspconfig'.tsserver.setup{}
 lua require'lspconfig'.intelephense.setup{}
 lua require'lspconfig'.vuels.setup{}
