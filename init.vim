@@ -227,11 +227,21 @@ let g:indentLine_enabled = 0
 " markdown
 let g:vim_markdown_folding_disabled = 1
 
-"
+" lightline
+function! BlamerEnabled()
+    return g:blamer_enabled ? 'Blame!' : ''
+endfunction
+
+function! GitgutterEnabled()
+    return g:gitgutter_highlight_lines ? 'Gitgutter' : ''
+endfunction
+
 let g:lightline = {
-\   'active': {'left': [['mode', 'paste'],['gitbranch','readonly','filename','modified']]},
+\   'active': {'left': [['mode', 'paste'],['gitbranch','readonly','filename','modified','blamer','gitgutter']]},
 \   'component_function': {
-\       'gitbranch': 'FugitiveHead'
+\       'gitbranch': 'FugitiveHead',
+\       'blamer': 'BlamerEnabled',
+\       'gitgutter': 'GitgutterEnabled'
 \   }
 \}
 
