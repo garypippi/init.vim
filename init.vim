@@ -14,6 +14,7 @@ Plug 'w0rp/ale'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'APZelos/blamer.nvim'
 
 " db
 Plug 'tpope/vim-dadbod'
@@ -158,6 +159,7 @@ let g:ale_fixers = {
 set updatetime=400
 let g:gitgutter_map_keys = 0
 let g:gitgutter_signs = 0
+let g:blamer_delay = 400
 nnoremap <silent> <leader>hh :GitGutterLineHighlightsToggle<cr>
 nnoremap <silent> <leader>hh :GitGutterLineHighlightsToggle<cr>
 nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
@@ -165,6 +167,7 @@ nnoremap <silent> <leader>hs :GitGutterStageHunk<cr>
 nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
 nnoremap <silent> [h :GitGutterPrevHunk<cr>
 nnoremap <silent> ]h :GitGutterNextHunk<cr>
+nnoremap <silent> <leader>b :BlamerToggle<cr>
 
 " test
 nnoremap <silent> <leader>tf :TestFile<cr>
