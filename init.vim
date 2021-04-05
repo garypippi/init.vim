@@ -115,6 +115,7 @@ lua require'lspconfig'.intelephense.setup{}
 lua require'lspconfig'.vuels.setup{}
 lua require'lspconfig'.ccls.setup{}
 lua require'lspconfig'.rls.setup{}
+lua require'lspconfig'.gopls.setup{}
 
 " auto complete
 
