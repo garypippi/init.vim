@@ -2,7 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " LSP configurations
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'garypippi/completion-nvim'
 
 " snippets
 Plug 'norcalli/snippets.nvim'
@@ -107,40 +107,40 @@ nnoremap <silent> <leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<
 nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
 nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 
-lua vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false, underline = false })
-lua require'lspconfig'.vimls.setup{}
-lua require'lspconfig'.jsonls.setup{ settings = { json = { schemas = { { fileMatch = {'tsconfig.json'}, url = 'http://json.schemastore.org/tsconfig' }, { fileMatch = {'.eslintrc.json'}, url = 'http://json.schemastore.org/eslintrc' } } } } }
-lua require'lspconfig'.tsserver.setup{}
-lua require'lspconfig'.intelephense.setup{}
-lua require'lspconfig'.vuels.setup{}
-lua require'lspconfig'.ccls.setup{}
-lua require'lspconfig'.rls.setup{}
-lua require'lspconfig'.gopls.setup{}
+lua << EOF
 
-" auto complete
+local opts = { noremap = true, silent = true }
+local buf_set_keymap = function (...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local on_attach = function (client, bufnr)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    buf_set_keymap('n', '<leader>u', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', opts)
+    buf_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
+    buf_set_keymap('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
+    require'completion'.on_attach(client)
+end
 
-inoremap <silent><expr> <c-space> compe#complete()
-inoremap <silent><expr> <c-k> compe#confirm('<cr>')
-inoremap <silent><expr> <c-e> compe#close('<c-e>')
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false, underline = false })
 
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.allow_prefix_unmatch = v:false
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.spell = v:true
-let g:compe.source.tags = v:true
-let g:compe.source.snippets_nvim = v:true
+local json = {
+    schemas = {
+        { fileMatch = {'tsconfig.json'}, url = 'http://json.schemastore.org/tsconfig' },
+        { fileMatch = {'.eslintrc.json'}, url = 'http://json.schemastore.org/eslintrc' }
+    }
+}
+
+require'lspconfig'.vimls.setup { on_attach = on_attach }
+require'lspconfig'.jsonls.setup { settings = { json = json }, on_attach = on_attach }
+require'lspconfig'.tsserver.setup{ on_attach = on_attach }
+require'lspconfig'.intelephense.setup{ on_attach = on_attach }
+require'lspconfig'.vuels.setup{ on_attach = on_attach }
+require'lspconfig'.ccls.setup{ on_attach = on_attach }
+require'lspconfig'.rls.setup{ on_attach = on_attach }
+require'lspconfig'.gopls.setup{ on_attach = on_attach }
+
+EOF
 
 set completeopt=menu,menuone,noinsert,noselect
 set shortmess+=c
@@ -217,6 +217,10 @@ lua << EOF
         }
     }
 EOF
+
+let g:completion_confirm_key = ""
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
 
 " php
 nnoremap <silent> <leader>pcd :call PhpCsFixerFixDirectory()<cr>
