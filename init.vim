@@ -249,7 +249,7 @@ let g:lightline = {
 
 " vue
 au FileType vue syntax sync fromstart
-let g:vue_pre_processors = ['typescript']
+let g:vue_pre_processors = ['pug', 'typescript']
 
 " filer
 nnoremap <silent> <leader>r :Fern .<cr>
