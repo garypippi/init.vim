@@ -180,6 +180,7 @@ nnoremap <silent> <leader>tv :TestVisit<cr>
 " telescope
 nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <silent> <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <silent> <leader>kc <cmd>Telescope git_commits<cr>
 nnoremap <silent> <leader>kv <cmd>Telescope git_bcommits<cr>
 nnoremap <silent> <leader>kb <cmd>Telescope git_branches<cr>
