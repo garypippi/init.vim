@@ -108,15 +108,17 @@ nnoremap <silent> <leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<
 nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
 nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 
-lua vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false, underline = false })
-lua require'lspconfig'.vimls.setup{}
-lua require'lspconfig'.jsonls.setup{ settings = { json = { schemas = { { fileMatch = {'tsconfig.json'}, url = 'http://json.schemastore.org/tsconfig' }, { fileMatch = {'.eslintrc.json'}, url = 'http://json.schemastore.org/eslintrc' } } } } }
-lua require'lspconfig'.tsserver.setup{}
-lua require'lspconfig'.intelephense.setup{}
-lua require'lspconfig'.vuels.setup{}
-lua require'lspconfig'.ccls.setup{}
-lua require'lspconfig'.rls.setup{}
-lua require'lspconfig'.gopls.setup{}
+lua require'lsp'.setup{}
+lua require'lsp'.jsonls.setup{}
+lua require'lsp'.vimls.setup{}
+lua require'lsp'.tsserver.setup{}
+lua require'lsp'.intelephense.setup{}
+lua require'lsp'.vuels.setup{}
+lua require'lsp'.ccls.setup{}
+lua require'lsp'.rls.setup{}
+lua require'lsp'.gopls.setup{}
+
+" lua require'lsp'
 
 " auto complete
 
@@ -138,7 +140,7 @@ let g:compe.source.path = v:true
 let g:compe.source.buffer = v:true
 let g:compe.source.calc = v:true
 let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
+" let g:compe.source.nvim_lua = v:true
 let g:compe.source.spell = v:true
 let g:compe.source.tags = v:true
 let g:compe.source.snippets_nvim = v:true
@@ -149,6 +151,7 @@ set shortmess+=c
 " ale
 let g:ale_disable_lsp = 1
 let g:ale_fix_on_save = 1
+let g:ale_linters = {'json':[],'cpp':[]}
 let g:ale_fixers = {
     \'html': [],
     \'json': ['prettier'],
