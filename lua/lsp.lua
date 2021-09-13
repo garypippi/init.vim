@@ -14,5 +14,6 @@ return {
     vuels = require('lsp/vuels'),
     ccls = require('lsp/ccls'),
     rls = require('lsp/rls'),
-    gopls = require('lsp/gopls')
+    gopls = require('lsp/gopls'),
+    pylsp = require('lsp/pylsp')
 }

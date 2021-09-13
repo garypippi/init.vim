@@ -117,6 +117,7 @@ lua require'lsp'.vuels.setup{}
 lua require'lsp'.ccls.setup{}
 lua require'lsp'.rls.setup{}
 lua require'lsp'.gopls.setup{}
+lua require'lsp'.pylsp.setup{}
 
 " lua require'lsp'
 
