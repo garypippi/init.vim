@@ -176,6 +176,7 @@ nnoremap <silent> ]h :GitGutterNextHunk<cr>
 nnoremap <silent> <leader>b :BlamerToggle<cr>
 
 " test
+let g:test#php#phpunit#executable = './vendor/bin/phpunit'
 nnoremap <silent> <leader>tf :TestFile<cr>
 nnoremap <silent> <leader>tn :TestNearest<cr>
 nnoremap <silent> <leader>tt :TestSuite<cr>
