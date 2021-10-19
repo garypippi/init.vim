@@ -19,9 +19,22 @@ function set_mappings(set_keymap)
     set_keymap('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', {})
 end
 
+function set_completion(cmp)
+    cmp.setup({
+        mapping = {
+            ['<c-k>'] = cmp.mapping.confirm({ select = true })
+        },
+        sources = {
+            { name = 'nvim_lsp' },
+            { name = 'buffer' }
+        }
+    })
+end
+
 function configure(lsp, servers)
     set_diagnostics(vim.lsp)
     set_mappings(vim.api.nvim_set_keymap)
+    set_completion(require('cmp'))
     for _, server in ipairs(servers) do
         require('lsp/' .. server)(lsp)
     end

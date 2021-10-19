@@ -2,7 +2,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 " LSP configurations
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
 
 " snippets
 Plug 'norcalli/snippets.nvim'
@@ -101,35 +103,6 @@ call plug#end()
 
 " LSP
 lua require'lsp'()
-
-
-" auto complete
-
-inoremap <silent><expr> <c-space> compe#complete()
-inoremap <silent><expr> <c-k> compe#confirm('<cr>')
-inoremap <silent><expr> <c-e> compe#close('<c-e>')
-
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.allow_prefix_unmatch = v:false
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-" let g:compe.source.nvim_lua = v:true
-let g:compe.source.spell = v:true
-let g:compe.source.tags = v:true
-let g:compe.source.snippets_nvim = v:true
-
-set completeopt=menu,menuone,noinsert,noselect
-set shortmess+=c
 
 " ale
 let g:ale_disable_lsp = 1
