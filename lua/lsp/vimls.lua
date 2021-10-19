@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').vimls.setup({})
+return function(lsp)
+    lsp.vimls.setup({})
 end
-
-return {
-    setup = setup
-}

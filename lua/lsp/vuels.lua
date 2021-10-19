@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').vuels.setup({})
+return function(lsp)
+    lsp.vuels.setup({})
 end
-
-return {
-    setup = setup
-}

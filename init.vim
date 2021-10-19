@@ -100,26 +100,8 @@ Plug 'peterhoeg/vim-qml'
 call plug#end()
 
 " LSP
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<cr>
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
-nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
-nnoremap <silent> <leader>u <cmd>lua vim.lsp.buf.rename()<cr>
-nnoremap <silent> <leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
-nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
-nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+lua require'lsp'()
 
-lua require'lsp'.setup{}
-lua require'lsp'.jsonls.setup{}
-lua require'lsp'.vimls.setup{}
-lua require'lsp'.tsserver.setup{}
-lua require'lsp'.intelephense.setup{}
-lua require'lsp'.vuels.setup{}
-lua require'lsp'.ccls.setup{}
-lua require'lsp'.rls.setup{}
-lua require'lsp'.gopls.setup{}
-lua require'lsp'.pylsp.setup{}
-
-" lua require'lsp'
 
 " auto complete
 

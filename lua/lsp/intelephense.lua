@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').intelephense.setup({})
+return function(lsp)
+    lsp.intelephense.setup({})
 end
-
-return {
-    setup = setup
-}

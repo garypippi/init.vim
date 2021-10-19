@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').pylsp.setup({})
+return function(lsp)
+    lsp.pylsp.setup({})
 end
-
-return {
-    setup = setup
-}

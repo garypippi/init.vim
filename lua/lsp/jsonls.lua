@@ -1,8 +1,12 @@
-function setup()
+function get_capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
-    require('lspconfig').jsonls.setup({
-        capabilities = capabilities,
+    return capabilities
+end
+
+return function(lsp)
+    lsp.jsonls.setup({
+        capabilities = get_capabilities(),
         settings = {
             json = {
                 schemas = {
@@ -13,7 +17,3 @@ function setup()
         }
     })
 end
-
-return {
-    setup = setup
-}

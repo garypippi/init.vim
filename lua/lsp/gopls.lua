@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').gopls.setup({})
+return function(lsp)
+    lsp.gopls.setup({})
 end
-
-return {
-    setup = setup
-}

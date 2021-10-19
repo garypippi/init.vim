@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').rls.setup({})
+return function(lsp)
+    lsp.rls.setup({})
 end
-
-return {
-    setup = setup
-}

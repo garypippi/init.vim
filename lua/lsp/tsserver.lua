@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').tsserver.setup({})
+return function(lsp)
+    lsp.tsserver.setup({})
 end
-
-return {
-    setup = setup
-}

@@ -1,7 +1,3 @@
-function setup()
-    require('lspconfig').ccls.setup({})
+return function(lsp)
+    lsp.ccls.setup({})
 end
-
-return {
-    setup = setup
-}
