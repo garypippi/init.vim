@@ -89,7 +89,9 @@ Plug 'retorillo/istanbul.vim'
 Plug 'janko/vim-test'
 
 " theme
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'folke/tokyonight.nvim'
+
+" status line
 Plug 'itchyny/lightline.vim'
 
 " jsx
@@ -186,6 +188,7 @@ function! GitgutterEnabled()
 endfunction
 
 let g:lightline = {
+\   'colorscheme': 'tokyonight',
 \   'active': {'left': [['mode', 'paste'],['gitbranch','readonly','filename','modified','blamer','gitgutter']]},
 \   'component_function': {
 \       'gitbranch': 'FugitiveHead',
@@ -211,9 +214,7 @@ augroup my-glyph-palette
 augroup END
 
 " theme
-let g:PaperColor_Theme_Options = { 'theme': { 'default': { 'transparent_background': 1 } } }
-set background=dark
-colorscheme PaperColor
+colorscheme tokyonight
 
 let g:vimsyn_embed='lPr'
 
@@ -227,10 +228,6 @@ set shiftwidth=4
 set softtabstop=4
 
 set number
-highlight LineNr ctermfg=246
-highlight NonText ctermfg=68
-highlight LspDiagnosticsSignError ctermbg=9 ctermfg=15
-highlight LspDiagnosticsSignHint ctermbg=142 ctermfg=15
 
 set list
 set listchars=tab:>-
