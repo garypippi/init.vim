@@ -102,7 +102,7 @@ Plug 'peterhoeg/vim-qml'
 call plug#end()
 
 " LSP
-lua require'lsp'()
+lua require'pippi/lsp'()
 
 " ale
 let g:ale_disable_lsp = 1

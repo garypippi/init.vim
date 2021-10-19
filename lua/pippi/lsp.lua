@@ -36,7 +36,7 @@ function configure(lsp, servers)
     set_mappings(vim.api.nvim_set_keymap)
     set_completion(require('cmp'))
     for _, server in ipairs(servers) do
-        require('lsp/' .. server)(lsp)
+        require('pippi/lsp/' .. server)(lsp)
     end
 end
 
