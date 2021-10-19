@@ -6,6 +6,9 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 
+" treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " snippets
 Plug 'norcalli/snippets.nvim'
 Plug 'garypippi/sniphpets.nvim'
@@ -101,9 +104,13 @@ Plug 'peterhoeg/vim-qml'
 
 call plug#end()
 
+
 " LSP
 lua require'pippi/lsp'()
 lua require'pippi/telescope'()
+
+" treesitter
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 " ale
 let g:ale_disable_lsp = 1
