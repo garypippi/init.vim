@@ -103,6 +103,7 @@ call plug#end()
 
 " LSP
 lua require'pippi/lsp'()
+lua require'pippi/telescope'()
 
 " ale
 let g:ale_disable_lsp = 1
@@ -138,29 +139,6 @@ nnoremap <silent> <leader>tn :TestNearest<cr>
 nnoremap <silent> <leader>tt :TestSuite<cr>
 nnoremap <silent> <leader>tl :TestLast<cr>
 nnoremap <silent> <leader>tv :TestVisit<cr>
-
-" telescope
-nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <silent> <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <silent> <leader>kc <cmd>Telescope git_commits<cr>
-nnoremap <silent> <leader>kv <cmd>Telescope git_bcommits<cr>
-nnoremap <silent> <leader>kb <cmd>Telescope git_branches<cr>
-nnoremap <silent> <leader>ks <cmd>Telescope git_status<cr>
-
-lua << EOF
-    local actions = require('telescope.actions')
-    require('telescope').setup({
-        defaults = {
-            mappings = {
-                i = {
-                    ["<c-j>"] = actions.move_selection_next,
-                    ["<c-k>"] = actions.move_selection_previous
-                }
-            }
-        }
-    })
-EOF
 
 " snippets
 lua << EOF
