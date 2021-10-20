@@ -15,9 +15,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'norcalli/snippets.nvim'
 Plug 'garypippi/sniphpets.nvim'
 
-" ale
-Plug 'w0rp/ale'
-
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -115,19 +112,6 @@ lua require'pippi/telescope'()
 
 " treesitter
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-
-" ale
-let g:ale_disable_lsp = 1
-let g:ale_fix_on_save = 1
-let g:ale_linters = {'json':[],'cpp':[]}
-let g:ale_fixers = {
-    \'html': [],
-    \'json': ['prettier'],
-    \'javascript': ['eslint'],
-    \'typescript': ['eslint'],
-    \'typescriptreact': ['eslint'],
-    \'vue': ['eslint']
-\}
 
 " git
 set updatetime=400

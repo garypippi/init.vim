@@ -49,6 +49,7 @@ end
 return function()
     configure(require('lspconfig'), {
         'ccls',
+        'eslint',
         'gopls',
         'intelephense',
         'jsonls',
