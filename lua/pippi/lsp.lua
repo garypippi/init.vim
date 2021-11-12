@@ -33,6 +33,9 @@ function set_completion(cmp)
                 with_text = true,
                 maxwidth = 50
             })
+        },
+        snippet = {
+            expand = function(args) vim.fn["vsnip#anonymous"](args.body) end
         }
     })
 end
