@@ -89,7 +89,7 @@ Plug 'retorillo/istanbul.vim'
 Plug 'janko/vim-test'
 
 " theme
-Plug 'folke/tokyonight.nvim'
+Plug 'EdenEast/nightfox.nvim'
 
 " status line
 Plug 'itchyny/lightline.vim'
@@ -175,7 +175,7 @@ function! GitgutterEnabled()
 endfunction
 
 let g:lightline = {
-\   'colorscheme': 'tokyonight',
+\   'colorscheme': 'nightfox',
 \   'active': {'left': [['mode', 'paste'],['gitbranch','readonly','filename','modified','blamer','gitgutter']]},
 \   'component_function': {
 \       'gitbranch': 'FugitiveHead',
@@ -201,7 +201,8 @@ augroup my-glyph-palette
 augroup END
 
 " theme
-colorscheme tokyonight
+lua require'nightfox'.setup({ transparent = true })
+colorscheme nightfox
 
 let g:vimsyn_embed='lPr'
 
