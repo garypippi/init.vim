@@ -14,9 +14,9 @@ function set_mappings(set_keymap)
     set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', {})
     set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', {})
     set_keymap('n', '<leader>u', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
-    set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', {})
-    set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', {})
-    set_keymap('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', {})
+    set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<cr>', {})
+    set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<cr>', {})
+    set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
 end
 
 function set_completion(cmp)
