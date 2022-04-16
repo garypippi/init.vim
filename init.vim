@@ -175,7 +175,6 @@ function! GitgutterEnabled()
 endfunction
 
 let g:lightline = {
-\   'colorscheme': 'nightfox',
 \   'active': {'left': [['mode', 'paste'],['gitbranch','readonly','filename','modified','blamer','gitgutter']]},
 \   'component_function': {
 \       'gitbranch': 'FugitiveHead',
@@ -201,7 +200,7 @@ augroup my-glyph-palette
 augroup END
 
 " theme
-lua require'nightfox'.setup({ transparent = true })
+lua require'nightfox'.setup({ options = { transparent = true } })
 colorscheme nightfox
 
 let g:vimsyn_embed='lPr'
