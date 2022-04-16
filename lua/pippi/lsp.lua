@@ -21,9 +21,9 @@ end
 
 function set_completion(cmp)
     cmp.setup({
-        mapping = {
+        mapping = cmp.mapping.preset.insert({
             ['<c-k>'] = cmp.mapping.confirm({ select = true })
-        },
+        }),
         sources = {
             { name = 'nvim_lsp' },
             { name = 'buffer' }
