@@ -61,6 +61,7 @@ return function()
         'rls',
         'tsserver',
         'vimls',
-        'vuels'
+        'vuels',
+        'arduino'
     })
 end
