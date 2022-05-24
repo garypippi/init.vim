@@ -62,6 +62,7 @@ return function()
         'tsserver',
         'vimls',
         'vuels',
-        'arduino'
+        'arduino',
+        'lua'
     })
 end
