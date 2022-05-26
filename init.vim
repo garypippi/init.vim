@@ -12,10 +12,6 @@ Plug 'onsails/lspkind-nvim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" snippets
-Plug 'norcalli/snippets.nvim'
-Plug 'garypippi/sniphpets.nvim'
-
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -135,25 +131,6 @@ nnoremap <silent> <leader>tn :TestNearest<cr>
 nnoremap <silent> <leader>tt :TestSuite<cr>
 nnoremap <silent> <leader>tl :TestLast<cr>
 nnoremap <silent> <leader>tv :TestVisit<cr>
-
-" snippets
-lua << EOF
-    local indent = require('snippets.utils').match_indentation
-    local sniphpets = require('sniphpets')
-    require('snippets').snippets = {
-        php = {
-            ['public property'] = indent(sniphpets.get_property('public')),
-            ['private property'] = indent(sniphpets.get_property('private')),
-            ['protected property'] = indent(sniphpets.get_property('protected')),
-            ['public function'] = indent(sniphpets.get_function('public')),
-            ['public static function'] = indent(sniphpets.get_function('public static')),
-            ['private function'] = indent(sniphpets.get_function('private')),
-            ['private static function'] = indent(sniphpets.get_function('private static')),
-            ['protected function'] = indent(sniphpets.get_function('protected')),
-            ['protected static function'] = indent(sniphpets.get_function('protected static'))
-        }
-    }
-EOF
 
 " php
 nnoremap <silent> <leader>pcd :call PhpCsFixerFixDirectory()<cr>
