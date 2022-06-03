@@ -27,11 +27,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 
 " Filer
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/glyph-palette.vim'
+lua require'pippi.plug.fern':plug()
 
 " telescope
 Plug 'nvim-lua/popup.nvim'
@@ -164,17 +160,7 @@ let g:lightline = {
 au FileType vue syntax sync fromstart
 let g:vue_pre_processors = ['pug', 'typescript']
 
-" filer
-nnoremap <silent> <leader>r :Fern .<cr>
-nnoremap <silent> - :Fern . -reveal=%:p<cr>
-let g:fern#renderer = 'nerdfont'
-
-"
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-  autocmd FileType nerdtree,startify call glyph_palette#apply()
-augroup END
+lua require'pippi.plug.fern':setup()
 
 " theme
 lua require'nightfox'.setup({ options = { transparent = true } })
