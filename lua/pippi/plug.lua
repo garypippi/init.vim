@@ -23,13 +23,13 @@ PippiPlug.plug = function (self)
         if next(opts) == nil then
             vim.fn['plug#'](name)
         else
-            vim.fn['plug#'](opts)
+            vim.fn['plug#'](name, opts)
         end
     end
 end
 
 ---@param self PippiPlug
-PippiPlug.setup = function (self)
+PippiPlug.init = function (self)
     -- set keymaps
     for _, args in pairs(self.option.keymap) do
         vim.keymap.set(unpack(args))
