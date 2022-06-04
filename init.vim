@@ -22,6 +22,7 @@ lua require'pippi.plug.gitgutter':plug()
 lua require'pippi.plug.cmp':plug()
 lua require'pippi.plug.lsp':plug()
 lua require'pippi.plug.telescope':plug()
+lua require'pippi.plug.test':plug()
 
 " php
 Plug 'stephpy/vim-php-cs-fixer'
@@ -66,8 +67,6 @@ Plug 'mattn/emmet-vim'
 " istanbul
 Plug 'retorillo/istanbul.vim'
 
-" testing speed of thought
-Plug 'janko/vim-test'
 
 " theme
 Plug 'EdenEast/nightfox.nvim'
@@ -96,14 +95,6 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 " set updatetime=400
 let g:blamer_delay = 400
 nnoremap <silent> <leader>b :BlamerToggle<cr>
-
-" test
-let g:test#php#phpunit#executable = './vendor/bin/phpunit'
-nnoremap <silent> <leader>tf :TestFile<cr>
-nnoremap <silent> <leader>tn :TestNearest<cr>
-nnoremap <silent> <leader>tt :TestSuite<cr>
-nnoremap <silent> <leader>tl :TestLast<cr>
-nnoremap <silent> <leader>tv :TestVisit<cr>
 
 " php
 nnoremap <silent> <leader>pcd :call PhpCsFixerFixDirectory()<cr>
@@ -142,6 +133,7 @@ lua require'pippi.plug.gitgutter':setup()
 lua require'pippi.plug.cmp':setup()
 lua require'pippi.plug.lsp':setup()
 lua require'pippi.plug.telescope':setup()
+lua require'pippi.plug.test':setup()
 
 " theme
 lua require'nightfox'.setup({ options = { transparent = true } })
