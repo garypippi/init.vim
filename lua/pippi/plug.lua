@@ -6,13 +6,15 @@ local PippiPlug = {}
 ---@field keymap table[]
 ---@field autocmd table<string,table[]>
 ---@field variable table<string,table<string,string>>
+---@field callback function
 
 ---@type PippiPlugOption
 PippiPlug.option = {
     plugs = {},
     keymap = {},
     autocmd = {},
-    variable = {}
+    variable = {},
+    callback = function () end
 }
 
 ---@param self PippiPlug
@@ -49,11 +51,17 @@ PippiPlug.setup = function (self)
             vim[scope][name] = value
         end
     end
+    --- call callback function
+    self.option.callback()
 end
 
 ---@param option PippiPlugOption
 PippiPlug.new = function (option)
-    return setmetatable({ option = option }, {
+    local _option = {}
+    for k, v in pairs(PippiPlug.option) do
+        _option[k] = option[k] == nil and v or option[k]
+    end
+    return setmetatable({ option = _option }, {
         __index = PippiPlug
     })
 end

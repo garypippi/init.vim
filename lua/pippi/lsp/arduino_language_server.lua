@@ -1,5 +1,4 @@
-return function(lsp)
-lsp.arduino_language_server.setup({
+return {
     cmd =  {
         "arduino-language-server",
         "-cli", "arduino-cli",
@@ -7,5 +6,4 @@ lsp.arduino_language_server.setup({
         "-fqbn", "arduino:avr:uno",
         "-clangd", "clangd"
     }
-})
-end
+}

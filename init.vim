@@ -1,20 +1,10 @@
 call plug#begin('~/.config/nvim/plugged')
 
-" LSP configurations
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
-
-Plug 'onsails/lspkind-nvim'
-
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'APZelos/blamer.nvim'
 
 " db
@@ -28,11 +18,10 @@ Plug 'bronson/vim-trailing-whitespace'
 
 " Filer
 lua require'pippi.plug.fern':plug()
-
-" telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+lua require'pippi.plug.gitgutter':plug()
+lua require'pippi.plug.cmp':plug()
+lua require'pippi.plug.lsp':plug()
+lua require'pippi.plug.telescope':plug()
 
 " php
 Plug 'stephpy/vim-php-cs-fixer'
@@ -99,25 +88,13 @@ Plug 'peterhoeg/vim-qml'
 call plug#end()
 
 
-" LSP
-lua require'pippi/lsp'()
-lua require'pippi/telescope'()
 
 " treesitter
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 " git
-set updatetime=400
-let g:gitgutter_map_keys = 0
-let g:gitgutter_signs = 0
+" set updatetime=400
 let g:blamer_delay = 400
-nnoremap <silent> <leader>hh :GitGutterLineHighlightsToggle<cr>
-nnoremap <silent> <leader>hh :GitGutterLineHighlightsToggle<cr>
-nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
-nnoremap <silent> <leader>hs :GitGutterStageHunk<cr>
-nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
-nnoremap <silent> [h :GitGutterPrevHunk<cr>
-nnoremap <silent> ]h :GitGutterNextHunk<cr>
 nnoremap <silent> <leader>b :BlamerToggle<cr>
 
 " test
@@ -161,6 +138,10 @@ au FileType vue syntax sync fromstart
 let g:vue_pre_processors = ['pug', 'typescript']
 
 lua require'pippi.plug.fern':setup()
+lua require'pippi.plug.gitgutter':setup()
+lua require'pippi.plug.cmp':setup()
+lua require'pippi.plug.lsp':setup()
+lua require'pippi.plug.telescope':setup()
 
 " theme
 lua require'nightfox'.setup({ options = { transparent = true } })
