@@ -5,6 +5,10 @@ return PippiPlug.new({
         ['nvim-lualine/lualine.nvim'] = {}
     },
     callback = function ()
-        require'lualine'.setup()
+        require'lualine'.setup({
+            extensions = {
+                'fern'
+            }
+        })
     end
 })
